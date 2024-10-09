@@ -73,7 +73,7 @@ get_header();
 <div class="hero-slider">
     <div data-glide-el="track" class="glide__track">
         <div class="glide__slides">
-            <div class="hero-slider__slide" <?php bg_image("images/bus.jpg");?>">
+            <div class="hero-slider__slide" <?php bg_image("images/bus.jpg");?>>
                 <div class="hero-slider__interior container">
                     <div class="hero-slider__overlay">
                         <h2 class="headline headline--medium t-center">Free Transportation</h2>
@@ -82,7 +82,7 @@ get_header();
                     </div>
                 </div>
             </div>
-            <div class="hero-slider__slide" <?php bg_image("images/apples.jpg");?>">
+            <div class="hero-slider__slide" <?php bg_image("images/apples.jpg");?>>
                 <div class="hero-slider__interior container">
                     <div class="hero-slider__overlay">
                         <h2 class="headline headline--medium t-center">An Apple a Day</h2>
@@ -91,7 +91,7 @@ get_header();
                     </div>
                 </div>
             </div>
-            <div class="hero-slider__slide" <?php bg_image("images/bread.jpg");?>">
+            <div class="hero-slider__slide" <?php bg_image("images/bread.jpg");?>>
                 <div class="hero-slider__interior container">
                     <div class="hero-slider__overlay">
                         <h2 class="headline headline--medium t-center">Free Food</h2>
