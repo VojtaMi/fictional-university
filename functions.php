@@ -9,6 +9,13 @@ function university_files()
 }
 add_action("wp_enqueue_scripts", "university_files");
 
+function university_features()
+{
+    add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme', 'university_features');
+
 // Backgroun Image
 function bg_image($file_path) {
     echo 'style="background-image: url(' . get_theme_file_uri($file_path) . ')"';
