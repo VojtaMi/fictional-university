@@ -16,7 +16,10 @@ function university_features()
 
 add_action('after_setup_theme', 'university_features');
 
-// Backgroun Image
+// Helper functions for subpages
+require get_theme_file_path('/page_functions.php');
+
+// Background Image
 function bg_image($file_path) {
     echo 'style="background-image: url(' . get_theme_file_uri($file_path) . ')"';
 }
