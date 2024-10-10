@@ -42,6 +42,8 @@ function list_submenu_sections($page_ID) {
     }
     
     foreach ($children as $child) {
-        echo '<li><a href="' . get_permalink($child->ID) . '">' . get_the_title($child->ID) . '</a></li>';
+        // Adds the 'current_page_item' class if the child page is the current page.
+        $class = ($child->ID == $page_ID) ? 'class="current_page_item"' : '';
+        echo '<li ' . $class . '><a href="' . get_permalink($child->ID) . '">' . get_the_title($child->ID) . '</a></li>';
     }
 }
