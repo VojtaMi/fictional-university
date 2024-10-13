@@ -16,11 +16,11 @@
         <div class="site-header__menu group">
           <nav class="main-navigation">
             <ul>
-              <li><a href="<?php echo site_url("/about-us") ?>">About Us</a></li> 
-              <li><a href="#">Programs</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Campuses</a></li>
-              <li><a href="#">Blog</a></li>
+              <?php menu_link('about-us', 'About Us'); ?>
+              <?php menu_link('#', 'Programs'); ?>
+              <?php menu_link('#', 'Events'); ?>
+              <?php menu_link('#', 'Campuses'); ?>
+              <?php menu_link('#', 'Blog'); ?>
             </ul>
           </nav>
           <div class="site-header__util">

@@ -47,3 +47,36 @@ function list_submenu_sections($page_ID) {
         echo '<li ' . $class . '><a href="' . get_permalink($child->ID) . '">' . get_the_title($child->ID) . '</a></li>';
     }
 }
+
+function link_is_to_current_or_ancestor_page($link_page) {
+    if (is_page($link_page->ID)) {
+        return 'current-menu-item';
+    }
+
+    // Check if the current page is a descendant of the link_page
+    $ancestors = get_post_ancestors(get_the_ID());
+    if (in_array($link_page->ID, $ancestors)) {
+        return 'current-menu-item';
+    }
+
+    return '';
+}
+
+
+function menu_link($url_ending, $link_title) {
+    // Get the page by path
+    $link_page = get_page_by_path($url_ending);
+
+     // Initialize variables
+     $current_menu_item = '';
+     $full_url = '';
+
+    if ($link_page){
+        $current_menu_item = link_is_to_current_or_ancestor_page($link_page);
+        $full_url = site_url($url_ending);
+    }
+
+    // Echo the list item with the appropriate class and link
+    echo '<li class="' . esc_attr($current_menu_item) . '"><a href="' . esc_url($full_url) . '">' . esc_html($link_title) . '</a></li>';
+}
+
