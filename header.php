@@ -20,7 +20,7 @@
               <?php menu_link('#', 'Programs'); ?>
               <?php menu_link('#', 'Events'); ?>
               <?php menu_link('#', 'Campuses'); ?>
-              <?php menu_link('#', 'Blog'); ?>
+              <?php menu_link('blog', 'Blog'); ?>
             </ul>
           </nav>
           <div class="site-header__util">
