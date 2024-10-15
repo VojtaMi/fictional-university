@@ -15,27 +15,28 @@ get_header();
     <div class="full-width-split__one">
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
+            <?php
+            $frontpage_events = new WP_Query([
+                'posts_per_page' => 2,
+                'post_type' => 'event',
+            ]);
+            while ($frontpage_events->have_posts()) { 
+                $frontpage_events->the_post()
+                ?>
 
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="#">
-                    <span class="event-summary__month">Mar</span>
-                    <span class="event-summary__day">25</span>
-                </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny"><a href="#">Poetry in the 100</a></h5>
-                    <p>Bring poems you&rsquo;ve wrote to the 100 building this Tuesday for an open mic and snacks. <a href="#" class="nu gray">Learn more</a></p>
+                <div class="event-summary">
+                    <a class="event-summary__date t-center" href="<?php the_permalink() ?>">
+                        <span class="event-summary__month">Jan</span>
+                        <span class="event-summary__day">1</span>
+                    </a>
+                    <div class="event-summary__content">
+                        <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h5>
+                        <p><?php echo wp_trim_words(get_the_content(), 18) ?> <a href="<?php the_permalink() ?>" class="nu gray">Learn more</a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="event-summary">
-                <a class="event-summary__date t-center" href="#">
-                    <span class="event-summary__month">Apr</span>
-                    <span class="event-summary__day">02</span>
-                </a>
-                <div class="event-summary__content">
-                    <h5 class="event-summary__title headline headline--tiny"><a href="#">Quad Picnic Party</a></h5>
-                    <p>Live music, a taco truck and more can found in our third annual quad picnic day. <a href="#" class="nu gray">Learn more</a></p>
-                </div>
-            </div>
+            <?php   }
+            wp_reset_postdata(); ?>
+
 
             <p class="t-center no-margin"><a href="#" class="btn btn--blue">View All Events</a></p>
         </div>
@@ -44,35 +45,35 @@ get_header();
         <div class="full-width-split__inner">
             <h2 class="headline headline--small-plus t-center">From Our Blogs</h2>
 
-            <?php $recent_posts = new WP_Query([
+            <?php $frontpage_posts = new WP_Query([
                 'posts_per_page' => 2
             ]);
 
-            while ($recent_posts->have_posts()) {
-                $recent_posts->the_post();
-                ?>
+            while ($frontpage_posts->have_posts()) {
+                $frontpage_posts->the_post();
+            ?>
                 <div class="event-summary">
-                    <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>"> 
-                        <span class="event-summary__month"><?php echo get_the_date('M'); ?></span> 
+                    <a class="event-summary__date event-summary__date--beige t-center" href="<?php the_permalink(); ?>">
+                        <span class="event-summary__month"><?php echo get_the_date('M'); ?></span>
                         <span class="event-summary__day"><?php echo get_the_date('d'); ?></span>
                     </a>
-                    <div class="event-summary__content"> 
+                    <div class="event-summary__content">
                         <h5 class="event-summary__title headline headline--tiny">
                             <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                         </h5>
                         <p><?php echo wp_trim_words(get_the_content(), 18) ?> <a href="<?php the_permalink(); ?>" class="nu gray">Read more</a></p>
                     </div>
-                    
+
                 </div>
-                <?php
+            <?php
             }
-            
+
             wp_reset_postdata();
 
             ?>
 
             <p class="t-center no-margin"><a href="<?php echo home_url('/blog'); ?>" class="btn btn--yellow">View All Blog Posts</a></p>
-            
+
         </div>
     </div>
 </div>
