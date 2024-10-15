@@ -48,14 +48,34 @@ function list_submenu_sections($page_ID) {
     }
 }
 
-function link_is_to_current_or_ancestor_page($link_page) {
-    if (is_page($link_page->ID)) {
-        return 'current-menu-item';
-    }
+function is_open_blog_page($link_page){
+    $blog_page_id = get_option('page_for_posts');
 
-    // Check if the current page is a descendant of the link_page
+     if ((is_home() || is_single() || is_archive()) && $link_page->ID == $blog_page_id) { // is_home() = function for blog_page home
+        return true;
+    }
+    return false;
+}
+
+function is_current_page($link_page){
+       if (is_page($link_page->ID)) {
+        return true;
+    }
+    return false;
+}
+
+function is_child_page($link_page){
     $ancestors = get_post_ancestors(get_the_ID());
     if (in_array($link_page->ID, $ancestors)) {
+        return true;
+    }
+    return false;
+ }
+
+
+function link_is_to_current_or_ancestor_page($link_page) {
+   
+    if (is_open_blog_page($link_page) || is_current_page($link_page) || is_child_page($link_page)){
         return 'current-menu-item';
     }
 
