@@ -48,15 +48,6 @@ function list_submenu_sections($page_ID) {
     }
 }
 
-function is_open_blog_page($link_page){
-    $blog_page_id = get_option('page_for_posts');
-
-     if ((is_home() || is_single() || is_archive()) && $link_page->ID == $blog_page_id) { // is_home() = function for blog_page home
-        return true;
-    }
-    return false;
-}
-
 function is_current_page($link_page){
        if (is_page($link_page->ID)) {
         return true;
@@ -73,17 +64,17 @@ function is_child_page($link_page){
  }
 
 
-function link_is_to_current_or_ancestor_page($link_page) {
-   
-    if (is_open_blog_page($link_page) || is_current_page($link_page) || is_child_page($link_page)){
-        return 'current-menu-item';
+function current_or_child_page_of($link_page) {
+    // if the link is the open page, or the open page is child of the link page
+    if (is_current_page($link_page) || is_child_page($link_page)){
+        return true;
     }
 
-    return '';
+    return false;
 }
 
 
-function menu_link($url_ending, $link_title) {
+function page_link($url_ending, $link_title) {
     // Get the page by path
     $link_page = get_page_by_path($url_ending);
 
@@ -92,11 +83,26 @@ function menu_link($url_ending, $link_title) {
      $full_url = '';
 
     if ($link_page){
-        $current_menu_item = link_is_to_current_or_ancestor_page($link_page);
+        if (current_or_child_page_of($link_page)){
+            $current_menu_item = 'current-menu-item';
+        }
         $full_url = site_url($url_ending);
     }
 
     // Echo the list item with the appropriate class and link
     echo '<li class="' . esc_attr($current_menu_item) . '"><a href="' . esc_url($full_url) . '">' . esc_html($link_title) . '</a></li>';
+}
+
+function post_section_link($post_type, $link_title){
+     // Initialize variables
+     $current_menu_item = '';
+     $full_url = get_post_type_archive_link($post_type);
+
+    if (get_post_type() == $post_type){
+        $current_menu_item = 'current-menu-item';
+    }
+
+   // Echo the list item with the appropriate class and link
+   echo '<li class="' . esc_attr($current_menu_item) . '"><a href="' . esc_url($full_url) . '">' . esc_html($link_title) . '</a></li>';
 }
 

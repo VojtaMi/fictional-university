@@ -16,11 +16,11 @@
         <div class="site-header__menu group">
           <nav class="main-navigation">
             <ul>
-              <?php menu_link('about-us', 'About Us'); ?>
-              <?php menu_link('#', 'Programs'); ?>
-              <?php menu_link('#', 'Events'); ?>
-              <?php menu_link('#', 'Campuses'); ?>
-              <?php menu_link('blog', 'Blog'); ?>
+              <?php page_link('about-us', 'About Us'); ?>
+              <?php page_link('#', 'Programs'); ?>
+              <?php post_section_link('event', 'Events'); ?>
+              <?php page_link('#', 'Campuses'); ?>
+              <?php post_section_link('post', 'Blog'); ?>
             </ul>
           </nav>
           <div class="site-header__util">
